@@ -21,11 +21,17 @@ app = Flask(__name__)
 def index():
     return redirect(url_for('login'))
 
-@app.route('/bookmarks/username=<username>')
+@app.route('/bookmarks/username=<username>', methods=['GET', 'POST'])
 
 def index_page(username):
     links = get_db().out_db(username)
+    
+    if request.method == 'POST':
+        query = request.form['query']
+        search = ' of '+ query
 
+        return render_template('index.html', username=username, links=links, search=search)
+ 
     return render_template('index.html', username=username, links=links)
 
 @app.route('/bookmark/add/bookmark=<bookmark>,username=<username>')

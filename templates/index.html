@@ -2,6 +2,76 @@
 
 {% block body %}
 
-<h1>hello everyone</h1>
+{% set username = username %}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row">
+  <!-- BEGIN SEARCH RESULT -->
+  <div class="col-md-12">
+    <div class="grid search">
+      <div class="grid-body">
+        <div class="row">
+          <!-- BEGIN FILTERS -->
+          <div class="col-md-3">
+            <h2 class="grid-title"><i class="fa fa-filter"></i> Search by Tags</h2>
+            <hr>
+            
+            <!-- BEGIN FILTER BY CATEGORY -->
+            <h4>All Tags:</h4>
+            <div class="checkbox">
+              <label><input type="checkbox" class="icheck"> Application</label>
+            </div>
+            
+            <!-- END FILTER BY CATEGORY -->
+        
+          </div>
+          <!-- END FILTERS -->
+          <!-- BEGIN RESULT -->
+          <div class="col-md-9">
+            <h2><i class="fa fa-file-o"></i>{{username}}</h2>
+            <hr>
+            <!-- BEGIN SEARCH INPUT -->
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+            <!-- END SEARCH INPUT -->
+            <p>Showing all results</p>
+            
+            <div class="padding"></div>
+            
+            <div class="row">
+             
+            
+            <!-- BEGIN TABLE RESULT -->
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <tbody>
+                {% for item in links %}
+                <tr>
+                  <td class="number text-center">1</td>
+                  <td class="image"><img src="https://via.placeholder.com/400x300/FF8C00" alt=""></td>
+                  <td class="product"><strong>Bookmark 1</strong><br>{{links[item]}}</td>
+                  <td class="rate text-right"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></span></td>
+                  <td class="price text-right">{{item}}</td>
+                </tr>
+                {% endfor %}
+ 
+              </tbody></table>
+            </div>
+            <!-- END TABLE RESULT -->
+            
+          </div>
+          <!-- END RESULT -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END SEARCH RESULT -->
+</div>
+</div>
 
 {% endblock body %}

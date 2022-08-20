@@ -32,14 +32,16 @@
             <h2><i class="fa fa-file-o"></i>{{username}}</h2>
             <hr>
             <!-- BEGIN SEARCH INPUT -->
+            <form method="POST">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search...">
+              <input type="text" class="form-control" placeholder="Search..." id="query" name="query">
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
               </span>
             </div>
+            </form>
             <!-- END SEARCH INPUT -->
-            <p>Showing all results</p>
+            <p>Showing all results {{search}}</p>
             
             <div class="padding"></div>
             

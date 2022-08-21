@@ -1,10 +1,12 @@
 import sqlite3
 
+
 class Bookmark():
     def __init__(self, link, title, tags):
         self.link = link
         self.title = title
         self.tags = tags.split(',')
+
 
 class DB():
     def __init__(self):
@@ -27,9 +29,16 @@ class DB():
         cursor.execute(command, (link, title, ','.join(tags)))
         self.conn.commit()
 
-    def get_links(self):
+    def add_links(self, bookmarks):
         cursor = self.conn.cursor()
-        command = "SELECT LINK, TITLE, TAGS from bookmarks"
+        command = f"INSERT INTO bookmarks(LINK, TITLE, TAGS) values(?, ?, ?)"
+        cursor.executemany(command, bookmarks)
+        self.conn.commit()
+
+    def get_links(self, page=1, per_page=20):
+        cursor = self.conn.cursor()
+        offset = (page - 1) * per_page
+        command = f"SELECT LINK, TITLE, TAGS from bookmarks LIMIT {offset},{per_page}"
         cursor.execute(command)
         data = cursor.fetchall()
-        return [Bookmark(d[0], d[1], d[2].split(',')) for d in data]
+        return [Bookmark(d[0], d[1], d[2]) for d in data]

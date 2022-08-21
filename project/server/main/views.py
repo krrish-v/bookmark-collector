@@ -5,7 +5,7 @@ from flask import render_template, Blueprint, jsonify, request
 import json
 
 from project.server.main.db import DB
-from project.server.tasks import create_task
+from project.server.tasks import create_task, process_bookmarks
 
 main_blueprint = Blueprint("main", __name__, )
 
@@ -16,8 +16,9 @@ main_blueprint = Blueprint("main", __name__, )
 
 @main_blueprint.route('/', methods=['GET'])
 def index_page():
-    links = DB().get_links()
-    return render_template('main/index.html', links=links)
+    page = request.args.get('page', 1, type=int)
+    links = DB().get_links(page=page, per_page=20)
+    return render_template('main/index.html', links=links, page=page)
 
 
 @main_blueprint.route('/bookmark', methods=['POST'])
@@ -39,6 +40,7 @@ def upload():
     f = request.files['file']
     if f.filename != '':
         f.save(f.filename)
+        process_bookmarks.delay(f.filename)
     return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 

@@ -1,6 +1,6 @@
 # pull official base image
 FROM python:3.10.2-slim-buster
-
+RUN apt-get update && apt-get install -y --no-install-recommends python3-dev
 # set work directory
 WORKDIR /usr/src/app
 

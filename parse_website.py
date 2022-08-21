@@ -6,7 +6,10 @@ import pandas as pd
 '''
 For utilizing this script, I had to use https://github.com/RodrigoTomeES/html-bookmark-to-csv to convert html file into CSV.
 Here, I read that file, get the response along with metadata and write it into another CSV file.
-That CSV file can be used to test embed cohere model and perform semantic search capability 
+That CSV file can be used to test embed cohere model and perform semantic search capability.
+
+I tried the cohere embed with Title of the bookmarks as parameter and the output is in the parseBookmarks.ipynb. 
+Open it in Google Colab to visualize the output of altair representations.
 '''
 
 def get_title(html):

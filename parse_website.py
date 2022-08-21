@@ -3,6 +3,12 @@ from bs4 import BeautifulSoup
 import pprint
 import pandas as pd
 
+'''
+For utilizing this script, I had to use https://github.com/RodrigoTomeES/html-bookmark-to-csv to convert html file into CSV.
+Here, I read that file, get the response along with metadata and write it into another CSV file.
+That CSV file can be used to test embed cohere model and perform semantic search capability 
+'''
+
 def get_title(html):
     """Scrape page title."""
     title = None

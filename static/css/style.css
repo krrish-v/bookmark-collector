@@ -55,3 +55,10 @@ body{margin-top:20px;
         display: inline;
         font-weight: 600;
     }
+.center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        border: 3px solid green;
+      }
